@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, systemSettings, userSettings, ... }:
 
 {
     imports =
@@ -21,55 +21,35 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    networking.hostName = "zephyrus"; # Define your hostname.
+    networking.hostName = systemSettings.hostname;
     networking.networkmanager.enable = true;
 
     # timezone and locale
-    time.timeZone = "America/Chicago";
-    i18n.defaultLocale = "en_US.UTF-8";
+    time.timeZone = systemSettings.timezone;
+    i18n.defaultLocale = systemSettings.locale;
     i18n.extraLocaleSettings = {
-        LC_ADDRESS = "en_US.UTF-8";
-        LC_IDENTIFICATION = "en_US.UTF-8";
-        LC_MEASUREMENT = "en_US.UTF-8";
-        LC_MONETARY = "en_US.UTF-8";
-        LC_NAME = "en_US.UTF-8";
-        LC_NUMERIC = "en_US.UTF-8";
-        LC_PAPER = "en_US.UTF-8";
-        LC_TELEPHONE = "en_US.UTF-8";
-        LC_TIME = "en_US.UTF-8";
-    };
-
-    # configure keymap in X11 (MOVE TO HOME-MANAGER)
-    services.xserver = {
-        enable = true;
-        layout = "us";
-        xkbVariant = "";
-
-        windowManager.i3 = {
-            enable = true;
-            extraPackages = with pkgs; [
-                dunst
-                i3status
-                i3lock
-                i3blocks
-                polybar
-                rofi
-                xdg-user-dirs
-            ];
-        };
+        LC_ADDRESS = systemSettings.locale;
+        LC_IDENTIFICATION = systemSettings.locale;
+        LC_MEASUREMENT = systemSettings.locale;
+        LC_MONETARY = systemSettings.locale;
+        LC_NAME = systemSettings.locale;
+        LC_NUMERIC = systemSettings.locale;
+        LC_PAPER = systemSettings.locale;
+        LC_TELEPHONE = systemSettings.locale;
+        LC_TIME = systemSettings.locale;
     };
 
     # define a user account. don't forget to set a password with ‘passwd’.
-    users.users.holo = {
+    users.users.${userSettings.username} = {
         isNormalUser = true;
-        description = "holo";
+        description = userSettings.name;
         extraGroups = [ "audio" "networkmanager" "wheel" ];
         packages = [ ];
     };
 
     environment.systemPackages = with pkgs; [
         curl
-	git
+	    git
         home-manager
         vim
         wget
@@ -87,6 +67,26 @@
     fonts.packages = with pkgs; [
         (nerdfonts.override { fonts = [ "FiraCode" ]; })
     ];
+
+    # configure keymap in X11 (MOVE TO HOME-MANAGER)
+    services.xserver = {
+        enable = true;
+        xkb.layout = "us";
+        xkb.variant = "";
+
+        windowManager.i3 = {
+            enable = true;
+            extraPackages = with pkgs; [
+                dunst
+                i3status
+                i3lock
+                i3blocks
+                polybar
+                rofi
+                xdg-user-dirs
+            ];
+        };
+    };
 
     system.stateVersion = "23.11"; # Did you read the comment?
 }

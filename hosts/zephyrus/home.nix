@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ pkgs, userSettings, ... }:
 
 {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
-    home.username = "holo";
-    home.homeDirectory = "/home/holo";
+    home.username = userSettings.username;
+    home.homeDirectory = "/home/"+userSettings.username;
 
     programs.home-manager.enable = true;
 
@@ -32,8 +32,8 @@
     home.file = { };
 
     home.sessionVariables = {
-        EDITOR = "nvim";
-        BROWSER = "firefox";
-        SHELL = "bash";
+        BROWSER = userSettings.browser;
+        EDITOR = userSettings.editor;
+        TERM = userSettings.term;
     };
 }
