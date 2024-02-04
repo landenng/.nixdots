@@ -8,6 +8,8 @@
     imports =
         [ 
             ./hardware-configuration.nix
+            (./. + "../../../modules/system/wm"+("/"+userSettings.wmType)+".nix")
+            # ../../modules/system/wm/x11.nix
         ];
 
     # ensure flakes are enabled
@@ -55,38 +57,36 @@
         wget
     ];
 
-    sound.enable = true;
-    security.rtkit.enable = true;
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-    };
+    # services.xserver = {
+    #     enable = true;
+    #     xkb.layout = "us";
+    #     xkb.variant = "";
 
-    fonts.packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    ];
+    #     windowManager.i3 = {
+    #         enable = true;
+    #         extraPackages = with pkgs; [
+    #             dunst
+    #             i3status
+    #             i3lock
+    #             i3blocks
+    #             polybar
+    #             rofi
+    #         ];
+    #     };
+    # };
 
-    # configure keymap in X11 (MOVE TO HOME-MANAGER)
-    services.xserver = {
-        enable = true;
-        xkb.layout = "us";
-        xkb.variant = "";
+    # fonts.packages = with pkgs; [
+    #     (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    # ];
 
-        windowManager.i3 = {
-            enable = true;
-            extraPackages = with pkgs; [
-                dunst
-                i3status
-                i3lock
-                i3blocks
-                polybar
-                rofi
-                xdg-user-dirs
-            ];
-        };
-    };
+    # sound.enable = true;
+    # security.rtkit.enable = true;
+    # services.pipewire = {
+    #     enable = true;
+    #     alsa.enable = true;
+    #     alsa.support32Bit = true;
+    #     pulse.enable = true;
+    # };
 
     system.stateVersion = "23.11"; # Did you read the comment?
 }
