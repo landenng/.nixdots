@@ -30,7 +30,7 @@
                 wmType = if (wm == "hyprland") then "wayland" else "x11";
                 browser = "firefox";
                 term = "alacritty";
-                editor = "neovim";
+                editor = "nvim";
             };
 
             # pkgs = import nixpkgs {
