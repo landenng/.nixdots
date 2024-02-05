@@ -8,7 +8,7 @@
     imports =
         [ 
             ./hardware-configuration.nix
-            (./. + "../../../modules/system/wm"+("/"+userSettings.wmType)+".nix")
+            (./. + "../../../modules/system/wm"+("/"+userSettings.wm)+".nix")
         ];
 
     # ensure flakes are enabled
