@@ -9,7 +9,6 @@
         [ 
             ./hardware-configuration.nix
             (./. + "../../../modules/system/wm"+("/"+userSettings.wmType)+".nix")
-            # ../../modules/system/wm/x11.nix
         ];
 
     # ensure flakes are enabled
@@ -56,37 +55,6 @@
         vim
         wget
     ];
-
-    # services.xserver = {
-    #     enable = true;
-    #     xkb.layout = "us";
-    #     xkb.variant = "";
-
-    #     windowManager.i3 = {
-    #         enable = true;
-    #         extraPackages = with pkgs; [
-    #             dunst
-    #             i3status
-    #             i3lock
-    #             i3blocks
-    #             polybar
-    #             rofi
-    #         ];
-    #     };
-    # };
-
-    # fonts.packages = with pkgs; [
-    #     (nerdfonts.override { fonts = [ "FiraCode" ]; })
-    # ];
-
-    # sound.enable = true;
-    # security.rtkit.enable = true;
-    # services.pipewire = {
-    #     enable = true;
-    #     alsa.enable = true;
-    #     alsa.support32Bit = true;
-    #     pulse.enable = true;
-    # };
 
     system.stateVersion = "23.11"; # Did you read the comment?
 }
