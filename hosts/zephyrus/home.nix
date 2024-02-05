@@ -4,6 +4,7 @@
     imports = [
         (./. + "../../../modules/user/wm"+("/"+userSettings.wm+"/"+userSettings.wm)+".nix")
     ];
+
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     home.username = userSettings.username;
@@ -30,7 +31,6 @@
         nodejs
         onefetch
         tmux
-        tree
     ];
 
     home.file = { };

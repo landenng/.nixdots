@@ -12,5 +12,5 @@
         rofi
     ];
 
-    # home.file."~/.config/i3/config" = ./config;
+    # home.file.".config/i3/config" = ./config;
 }
