@@ -5,11 +5,10 @@
 { pkgs, systemSettings, userSettings, ... }:
 
 {
-    imports =
-        [ 
-            ./hardware-configuration.nix
-            (./. + "../../../modules/system/wm"+("/"+userSettings.wm)+".nix")
-        ];
+    imports = [ 
+        ../../modules/system/hardware-configuration.nix
+        (./. + "../../../modules/system/wm"+("/"+userSettings.wm)+".nix")
+    ];
 
     # ensure flakes are enabled
     nix.package = pkgs.nixFlakes;

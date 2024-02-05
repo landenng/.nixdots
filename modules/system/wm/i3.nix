@@ -10,14 +10,6 @@
     services.xserver = {
         windowManager.i3 = {
             enable = true;
-            extraPackages = with pkgs; [
-                dunst
-                i3status
-                i3lock
-                i3blocks
-                polybar
-                rofi
-            ];
         };
     };
 }

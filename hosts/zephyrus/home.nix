@@ -1,6 +1,9 @@
 { pkgs, userSettings, ... }:
 
 {
+    imports = [
+        (./. + "../../../modules/user/wm"+("/"+userSettings.wm+"/"+userSettings.wm)+".nix")
+    ];
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     home.username = userSettings.username;
@@ -18,7 +21,6 @@
         discord
         eza
         firefox
-        flameshot
         gcc
         gh
         gnumake
@@ -26,7 +28,9 @@
         neofetch
         neovim
         nodejs
+        onefetch
         tmux
+        tree
     ];
 
     home.file = { };
