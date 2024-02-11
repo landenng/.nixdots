@@ -25,7 +25,7 @@
         gcc
         gh
         gnumake
-        python3
+        jupyter
         neofetch
         neovim
         nodejs
