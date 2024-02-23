@@ -21,10 +21,12 @@
         cargo
         discord
         eza
+        feh
         firefox
         gcc
         gh
         gnumake
+        htop
         jupyter
         neofetch
         neovim
