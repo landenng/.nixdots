@@ -22,19 +22,18 @@
         discord
         eza
         feh
-        ffmpeg
         firefox
         gcc
         gh
         gnumake
         htop
+        jupyter
         jq
         neofetch
         neovim
         nodejs
         onefetch
         tmux
-        vscode
     ];
 
     home.file = { };
