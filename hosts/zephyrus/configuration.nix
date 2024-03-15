@@ -8,7 +8,6 @@
     imports = [ 
         ../../modules/system/hardware-configuration.nix
         (./. + "../../../modules/system/wm"+("/"+userSettings.wm)+".nix")
-        ../../asus/zephyrus/ga502/default.nix
     ];
 
     # ensure flakes are enabled
@@ -17,6 +16,9 @@
 
     # unfree support
     nixpkgs.config.allowUnfree = true;
+
+    # amd gpu
+    boot.initrd.kernelModules = [ "amdgpu" ];
 
     # bootloader.
     boot.loader.systemd-boot.enable = true;
