@@ -17,9 +17,6 @@
     # unfree support
     nixpkgs.config.allowUnfree = true;
 
-    # amd gpu
-    boot.initrd.kernelModules = [ "amdgpu" ];
-
     # bootloader.
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
