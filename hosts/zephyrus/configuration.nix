@@ -8,6 +8,7 @@
     imports = [ 
         ../../modules/system/hardware-configuration.nix
         (./. + "../../../modules/system/wm"+("/"+userSettings.wm)+".nix")
+        ../../nixos-hardware/asus/zephyrus/ga502/default.nix
     ];
 
     # ensure flakes are enabled
